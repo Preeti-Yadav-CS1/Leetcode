@@ -1,0 +1,47 @@
+Approach 1:
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head==null){
+            return head;
+        }
+        ListNode currNode= head;
+        ListNode ptr;
+        int temp;
+        while(currNode!=null){
+            ptr= currNode.next;
+            while(ptr!=null){
+                if(currNode.val>ptr.val){
+                    temp= currNode.val;
+                    currNode.val= ptr.val;
+                    ptr.val= temp;
+                }
+                ptr= ptr.next;
+            }
+            currNode= currNode.next;
+        }
+        return head;
+    }
+}
+
+Approach 2:
+
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        
+        ListNode currNode= head;
+        ListNode ptr=head;
+        int count=0;
+        ArrayList<Integer> arr= new ArrayList<>();
+        while(currNode!=null){
+            arr.add(currNode.val);
+            count++;
+            currNode= currNode.next;
+        }
+        Collections.sort(arr);
+        for(int i=0; i<count;i++){
+            ptr.val= arr.get(i);
+            ptr=ptr.next;
+        }
+        return head;
+    }
+}
