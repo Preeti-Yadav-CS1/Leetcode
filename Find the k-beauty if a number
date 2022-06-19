@@ -1,0 +1,17 @@
+class Solution {
+    public int divisorSubstrings(int num, int k) {
+        String s= Integer.toString(num);
+        int len= s.length();
+        int count=0;
+        for(int i=0; i<len; i++){
+            if(i+k<= len){
+                String st= s.substring(i,i+k);
+                int subst= Integer.parseInt(st);
+                if(subst!=0 && num% subst==0){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
