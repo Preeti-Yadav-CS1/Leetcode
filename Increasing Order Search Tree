@@ -1,0 +1,12 @@
+class Solution {
+    public TreeNode increasingBST(TreeNode root) {
+        return BST(root, null);
+    }
+    public TreeNode BST(TreeNode root, TreeNode tail){
+        if(root==null) return tail;
+        TreeNode temp= BST(root.left, root);
+        root.left=null;
+        root.right= BST(root.right, tail);
+        return temp;
+    }
+}
