@@ -1,49 +1,51 @@
 import java.util.*;
-import java.lang.*;
 
-class Main
-{
-	public static void main (String[] args) throws java.lang.Exception
-	{
-		Scanner scanner= new Scanner(System.in);
-		int t= sc.nextInt();
-		while(t--){
-		int nos=sc.nextInt();
-		int noc= sc,nextInt();
-		int[] stalls= new int[nos];
-		for(int i=0;i<stalls.length;i++){
-			stalls[i]=sc.nextInt();
+class Main {
+    public static void main(String args[]) {
+        Scanner scanner= new Scanner(System.in);
+		int stall_length= scanner.nextInt();
+		int stalls[]= new int[stall_length];
+		int cow= scanner.nextInt();
+		for(int i=0; i<stalls.length;i++){
+			stalls[i]= scanner.nextInt();
 		}
+
+		int answer= agressiveCow(stalls, cow);
+		System.out.println(answer);
+    }
+	public static int agressiveCow(int[] stalls, int cow){
 		Arrays.sort(stalls);
-		System.out.println(largestMinDistance(stalls,noc);
+		int start=0;
+		int max= -1;
+		for(int i=0;i<stalls.length;i++){
+			max= Math.max(stalls[i], max);
 		}
-		
-	}
-	
-	public static int largestMinDistance(int[] stalls, int noc){
-		int low=0;
-		int high= stalls[stalls.length-1]- stall[0];
-		int ans=0;
-		while(low<=high){
-			int mid= low+(low+high)/2;
-			if(isitpossible(stalls,mid,noc)==true){
+		int end= max;
+		int ans=-1;
+		int mid= start+(end-start)/2;
+		while(start<=end){
+			if(isPossible(stalls, cow,mid)){
 				ans=mid;
-				low=mid+1;
-			}
-			else high=mid-1;
+				start=mid+1;
+			}else end=mid-1;
+
+			mid= start+(end-start)/2;
 		}
+
 		return ans;
 	}
-	public static boolean isitpossible(int []stalls, int mid, int noc){
-		int cow=1;
-		int pos= stall[0];
-		int i=1;
-		while(i<stalls.length){
-			if(stalls[i]-pos>=mid){
-				cow++;
-				pos= stalls[i];
+	public static boolean isPossible(int[] stalls, int cow, int mid){
+		int cowCount=1;
+		int lastPosition=stalls[0];
+
+		for(int i=0;i<stalls.length;i++){
+			if(stalls[i]-lastPosition>=mid){
+				cowCount++;
+				if(cowCount==cow){
+					return true;
+				}
+				lastPosition= stalls[i];
 			}
-			if(cow>=noc) return true;
 		}
 		return false;
 	}
