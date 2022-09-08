@@ -14,9 +14,9 @@ class Solution {
                 store=i;
             }else{
                 if(i==0){
-                    // ans=" ";
-                    ans=s.substring(i,store);
-                    res+=" "+ans;
+                    ans=" ";
+                    ans+=s.substring(i,store);
+                    res+=ans;
                 }
                 
             }
