@@ -1,4 +1,5 @@
-//time complexity O(n*m*(n+m))*O(n*m)
+//time complexity O(n*m)+O(n*m)
+//optimized approach
 class Solution {
     public void setZeroes(int[][] matrix) {
         int row=matrix.length;
@@ -6,6 +7,7 @@ class Solution {
         
         int rowTraverse[]= new int[row];
         int colTraverse[]= new int[col];
+        
         Arrays.fill(rowTraverse,-1);
         Arrays.fill(colTraverse,-1);
         for(int i=0;i<row;i++){
@@ -16,6 +18,7 @@ class Solution {
                 }
             }
         }
+        
         for(int i=0;i<row;i++){
             for(int j=0;j<col;j++){
                 if(rowTraverse[i]==0||colTraverse[j]==0)
