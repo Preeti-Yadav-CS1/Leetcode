@@ -1,3 +1,4 @@
+//time complexity O(n*m*(n+m))*O(n*m)
 class Solution {
     public void setZeroes(int[][] matrix) {
         int row=matrix.length;
