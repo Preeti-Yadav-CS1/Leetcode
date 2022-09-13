@@ -1,28 +1,21 @@
 class Solution {
     public boolean isStrictlyPalindromic(int n) {
-        boolean check= true;
         for(int i=2;i<=n-2;i++){
             String s= get(n,i);
             if(!isPalindrome(s)){
-                check=false;
-                break;
+                return false;
             }
         }
-        return check;
+        return true;
     }
     public String get(int n, int base){
-        String s="";
+        StringBuilder str= new StringBuilder();
         while(n!=0){
-            if(n%base!=0){
-                int rem= n%base;
-                s+=rem+'0';
-                n/=base;
-            }else{
-                s+='0';
-                n/=base;
-            }
+            int rem= n%base;
+            str.append(rem);
+            n/=base;
         }
-        return s;
+        return str.toString();
     }
     
     public static boolean isPalindrome(String str) {
