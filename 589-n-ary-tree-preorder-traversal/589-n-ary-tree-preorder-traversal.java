@@ -18,20 +18,12 @@ class Node {
 */
 
 class Solution {
+    LinkedList<Integer> outputArray= new LinkedList<>();
     public List<Integer> preorder(Node root) {
-        LinkedList<Node> stack= new LinkedList<>();
-        LinkedList<Integer> outputArray= new LinkedList<>();
         if(root==null) return outputArray;
-        
-        stack.add(root);
-        
-        while(!stack.isEmpty()){
-            Node element= stack.pollLast();
-            outputArray.add(element.val);
-            Collections.reverse(element.children);
-            for(Node child: element.children){
-                stack.add(child);
-            }
+        outputArray.add(root.val);
+        for(int i=0;i<root.children.size();i++){
+            preorder(root.children.get(i));
         }
         return outputArray;
     }
