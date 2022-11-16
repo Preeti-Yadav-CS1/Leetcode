@@ -5,10 +5,6 @@ class Solution {
         if(s.length()<1 || s==null){
             return 0;
         }
-        
-        final int max= Integer.MAX_VALUE;
-        final int min= Integer.MIN_VALUE;
-        
         //trip all spaces
         s= s.replaceAll("^\\s+","");
         
