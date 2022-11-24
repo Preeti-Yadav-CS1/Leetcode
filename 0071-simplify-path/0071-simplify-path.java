@@ -36,7 +36,7 @@ class Solution {
             st.push(stack.pop());
         }
         
-        while(!st.empty()){
+        while(!st.isEmpty()){
             if(st.size()!=1){
                 result+=(st.pop()+'/');
             }else{
