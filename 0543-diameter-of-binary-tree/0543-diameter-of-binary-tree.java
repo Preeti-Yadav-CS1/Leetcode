@@ -14,7 +14,7 @@
  * }
  */
 class DiaPair{
-    int ht=-1;
+    int ht=0;
     int d=0;
 }
 class Solution {
@@ -27,7 +27,7 @@ class Solution {
         DiaPair ldp= diameter(root.left);
         DiaPair rdp= diameter(root.right);
         DiaPair self= new DiaPair();
-        int sd= ldp.ht+ rdp.ht+2;
+        int sd= ldp.ht+ rdp.ht;
         
         self.d= Math.max(Math.max(ldp.d, rdp.d), sd);
         self.ht= Math.max(ldp.ht, rdp.ht)+1;
