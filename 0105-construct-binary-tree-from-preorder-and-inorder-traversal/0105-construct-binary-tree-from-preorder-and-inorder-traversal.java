@@ -15,25 +15,25 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        int pstart=0, instart=0;
-        int pend= preorder.length-1;
-        int inend= inorder.length-1;
-        return function(preorder, pstart, pend, inorder, instart, inend);
+        return createTree(inorder,0, inorder.length-1,preorder,0,preorder.length-1);
     }
-    private TreeNode function(int[] preorder, int pstart, int pend, int[] inorder, int instart, int inend){
-        if(pstart>pend || instart>inend) return null;
-        int value= preorder[pstart];
-        TreeNode node= new TreeNode(value);
-        
-        int k=0; 
-        for(int i=0; i<inorder.length; i++){
-            if(inorder[i]==value){
-                k=i;
-                break;
-            }
+    public TreeNode createTree(int[] inorder,int ilow, int ihigh, int[] preorder, int plow, int phigh){
+        if(ilow > ihigh || plow > phigh){
+            return null;
         }
-        node.left=function(preorder, pstart+1, pstart+(k-instart), inorder, instart,k-1);
-        node.right=function(preorder, pstart+(k-instart)+1,pend, inorder,k+1,inend);
-        return node;
+        TreeNode nn= new TreeNode(preorder[plow]);
+        int index= search(inorder, ilow, ihigh, preorder[plow]);
+        int netEle= index-ilow;
+        nn.left= createTree(inorder, ilow, index-1, preorder, plow+1, plow+netEle);
+        nn.right= createTree(inorder, index+1, ihigh, preorder, plow+netEle+1, phigh);
+        return nn;
+        
+    }
+    public int search(int[] inorder, int start, int end, int item){
+        for(int i=start; i<=end;i++){
+            if(inorder[i]==item)
+                return i;
+        }
+        return -1;
     }
 }
