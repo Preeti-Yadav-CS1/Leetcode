@@ -19,6 +19,8 @@ class Solution {
     }
     public boolean valid(TreeNode root, Integer mini, Integer maxi){
         if(root==null) return true;
-        return (mini==null||root.val>mini) && (maxi==null||root.val<maxi) && valid(root.left, mini, root.val) && valid(root.right, root.val, maxi);
+        boolean left= valid(root.left, mini, root.val);
+        boolean right= valid(root.right, root.val, maxi);
+        return (mini==null||root.val>mini) && (maxi==null||root.val<maxi) && left && right;
     }
 }
