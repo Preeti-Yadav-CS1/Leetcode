@@ -14,11 +14,31 @@
  * }
  */
 class Solution {
+    class BSTPair{
+        boolean isbst= true;
+        long min= Long.MAX_VALUE;
+        long max= Long.MIN_VALUE;
+    }
     public boolean isValidBST(TreeNode root) {
-        return valid(root, null, null); }
-    public boolean valid(TreeNode root, Integer mini, Integer maxi){
-        if(root==null) return true;
-        boolean left= valid(root.left, mini, root.val);
-        boolean right= valid(root.right, root.val, maxi);
-        return (mini==null||root.val>mini) && (maxi==null||root.val<maxi) && left && right;}
+        return validBST(root).isbst;
+    }
+    public BSTPair validBST(TreeNode root){
+        if(root==null){
+            return new BSTPair();
+        }
+        BSTPair left= validBST(root.left);
+        BSTPair right= validBST(root.right);
+        BSTPair self= new BSTPair();
+        
+        self.max= Math.max(left.max, Math.max(right.max, root.val));
+        self.min= Math.min(left.min, Math.min(right.min, root.val));
+        
+        if(left.isbst && right.isbst && left.max<root.val && right.min>root.val){
+            self.isbst= true;
+        }else{
+            self.isbst= false;
+        }
+        return self;
+    }
+    
 }
