@@ -5,11 +5,12 @@ class Solution {
             set.add(i);
         }
         int maxCount=0;
+        int sum=0;
         for(int i=1;i<=n;i++){
             if(!set.contains(i)){
-                if(maxSum>=i){
+                if(maxSum>=(sum+i)){
                     maxCount++;
-                    maxSum-=i;
+                    sum+=i;
                 }
             }
         }
