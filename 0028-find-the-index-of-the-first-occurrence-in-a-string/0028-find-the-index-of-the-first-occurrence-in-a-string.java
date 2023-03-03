@@ -8,15 +8,14 @@ class Solution {
         for(int i=0;i<l1-l2+1;i++){
             int count=0;
             int j=i;
-            while(count<l2 && haystack.charAt(j)==needle.charAt(count)){
+            while(count<l2 && haystack.charAt(j)== needle.charAt(count)){
                 count++;
                 j++;
             }
-            if(count==l2)
+            if(count==l2){
                 return i;
-
+            }
         }
         return -1;
-
     }
 }
