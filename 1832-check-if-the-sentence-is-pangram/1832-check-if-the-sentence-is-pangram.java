@@ -1,13 +1,19 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-        for(int i=0;i<26;i++){
-            char ch= (char)('a'+i);
+//         for(int i=0;i<26;i++){
+//             char ch= (char)('a'+i);
             
-            if(sentence.indexOf(ch)==-1){
-                return false;
-            }
-        }
+//             if(sentence.indexOf(ch)==-1){
+//                 return false;
+//             }
+//         }
         
-        return true;
+//         return true;
+        
+        HashSet<Character> set= new HashSet<>();
+        for(char ch: sentence.toCharArray()){
+            set.add(ch);
+        }
+        return set.size()==26? true: false;
     }
 }
