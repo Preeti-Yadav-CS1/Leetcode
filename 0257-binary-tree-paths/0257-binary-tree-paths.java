@@ -19,7 +19,6 @@ class Solution {
         searchBst(root,"", result);
         return result;
     }
-    
     public void searchBst(TreeNode root, String path, List<String> result){
         if(root.left==null && root.right==null)
             result.add(path+root.val);
@@ -28,6 +27,4 @@ class Solution {
         if(root.right!=null)
             searchBst(root.right, path+root.val+"->", result);
     }
-    
-    
 }
