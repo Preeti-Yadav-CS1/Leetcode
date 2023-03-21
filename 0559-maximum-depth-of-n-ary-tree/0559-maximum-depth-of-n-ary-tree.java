@@ -19,25 +19,12 @@ class Node {
 
 class Solution {
     public int maxDepth(Node root) {
-        ArrayList<List<Integer>> result= new ArrayList<>();
         if(root==null)
             return 0;
-        Queue<Node> queue= new LinkedList<>();
-        queue.add(root);
-        while(!queue.isEmpty()){
-            List<Integer> nodes= new ArrayList<>();
-            int n = queue.size();
-            for(int i=0;i<n;i++){
-                Node current= queue.poll();
-                nodes.add(current.val);
-                for(Node curr: current.children){
-                    queue.add(curr);
-                }
-            }
-            
-            result.add(nodes);
-        }
+        int max=0;
+        for(Node curr: root.children)
+            max= Math.max(max, maxDepth(curr));
         
-        return result.size();
+        return max+1;
     }
 }
