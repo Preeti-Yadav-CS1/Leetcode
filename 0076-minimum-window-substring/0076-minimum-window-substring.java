@@ -7,15 +7,14 @@ class Solution {
             map.put(ch, map.getOrDefault(ch,0)+1);
         }
         
-        int i=-1;
-        int j=-1;
+        int i=0;
+        int j=0;
         int count=0;
         HashMap<Character,Integer> map2= new HashMap<>();
         while(true){
             boolean flag1=false,flag2=false;
             //increment ans bnane 
-            while(j<s.length()-1 && count<t.length()){
-                j++;
+            while(j<s.length() && count<t.length()){
                 char ch= s.charAt(j);
                 map2.put(ch,map2.getOrDefault(ch,0)+1);
 
@@ -23,16 +22,17 @@ class Solution {
                     count++;
                 }
                 flag1=true;
+                j++;
             }
             //collect and release
             while(i<j && count==t.length()){
                 //collect
-                String possibleAns= s.substring(i+1,j+1);
+                String possibleAns= s.substring(i,j);
                 if(ans.length()==0 || possibleAns.length()<ans.length())
                     ans= possibleAns;
                 
                 //release
-                i++;
+                
                 char ch= s.charAt(i);
                 if(map2.get(ch)==1)
                     map2.remove(ch);
@@ -42,6 +42,7 @@ class Solution {
                 if(map2.getOrDefault(ch,0)< map.getOrDefault(ch,0))
                     count--;
                 flag2=true;
+                i++;
             }
             if(flag1==false && flag2==false)
                 break;
