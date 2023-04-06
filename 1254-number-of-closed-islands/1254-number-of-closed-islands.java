@@ -1,14 +1,12 @@
 class Solution {
     public int closedIsland(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        boolean[][] visited= new boolean[m][n];
-          
+        int row = grid.length;
+        int col = grid[0].length;
         int count=0;
         
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(grid[i][j]==0 && !visited[i][j] && dfs(i, j, m, n, grid, visited)){
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j]==0 && dfs(grid, i,j)){
                     count++;
                 }
             }
@@ -17,28 +15,25 @@ class Solution {
         return count;
     }
     
-    public boolean dfs(int x, int y, int r, int c, int[][]grid, boolean[][] visited){
-        if(x<0 || x>=r || y<0 || y>=c)
+    public boolean dfs(int[][] grid, int i, int j){
+        int row= grid.length;
+        int col= grid[0].length;
+        
+        if(i<0 || i>=row || j<0 || j>=col)
             return false;
         
-        if(grid[x][y]==1 || visited[x][y]){
+        if(grid[i][j]==1)
             return true;
-        }
         
-        visited[x][y]= true;
-        boolean closed= true;
+        grid[i][j]= 1;
         
-        int[] dirx = {0, 1, 0, -1};
-        int[] diry = {-1, 0, 1, 0};
+        boolean left= dfs(grid, i, j-1);
+        boolean right= dfs(grid, i, j+1);
+        boolean up =  dfs(grid, i-1, j);
+        boolean down =  dfs(grid, i+1, j);
         
-        for(int i=0;i<4;i++){
-            int temp1= x+dirx[i];
-            int temp2= y+diry[i];
-            
-            if(!dfs(temp1, temp2, r,c, grid, visited))
-                closed= false;
-        }
-        
-        return closed;
+        return left&& right&& up&& down;
     }
+    
+    
 }
