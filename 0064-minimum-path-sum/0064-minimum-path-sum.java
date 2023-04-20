@@ -6,11 +6,11 @@ class Solution {
         return minPath(grid, 0,0,dp);
     }
     public static int minPath(int[][] grid, int i, int j, int[][] dp){
-        if(i==grid.length-1 && j==grid[0].length-1)
-            return grid[i][j];
-        
         if(i>=grid.length || j>=grid[0].length)
             return Integer.MAX_VALUE;
+        
+        if(i==grid.length-1 && j==grid[0].length-1)
+            return grid[i][j];
         
         if(dp[i][j]!=-1)
             return dp[i][j];
